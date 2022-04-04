@@ -18,11 +18,19 @@ class ListsController < ApplicationController
   end
 
   def show
-    #今回はレコードを1件だけ取得するので、インスタンス変数名は単数形の「@list」にします。
+    #レコードを1件だけ取得するのでインスタンス変数名は単数形の「@list」にします。
     @list = List.find(params[:id])
   end
 
   def edit
+    #保存されているデータを取得
+    @list = List.find(params[:id])
+  end
+
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
   end
 
   private
